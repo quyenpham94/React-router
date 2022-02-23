@@ -1,28 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
+
+import { BrowserRouter, Route, Link, NavLink } from 'react-router-dom';
+import NavBar from './NavBar';
 import Home from './Home';
 import Eat from './Eat';
 import Drink from './Drink';
 
 
 function App() {
-  const [page, setPage] = useState('home');
-
-  const showPage = () => {
-    if(page === 'home') return <Home />
-    if(page === 'eat') return <Eat />
-    if(page === 'drink') return <Drink />
-
-  }
+ 
   return (
-    <div className="App">
-      <nav>
-        <a onClick={() => setPage('home')}>Home</a>
-        <a onClick={() => setPage('eat')}>Eat</a>
-        <a onClick={() => setPage('drink')}>Drink</a>
-      </nav>
-      {showPage()}
-    </div>
+    <main className="App">
+      <BrowserRouter>
+        <NavBar />
+        <Route exact path="/">
+            <Home />
+        </Route>
+        <Route exact path="/eat">
+            <Eat />
+        </Route>
+        <Route exact path="/drink">
+            <Drink />
+        </Route>
+      </BrowserRouter> 
+    </main>
   );
 }
 
