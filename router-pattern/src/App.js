@@ -2,6 +2,7 @@ import React from "react";
 import Food from "./Food";
 import FoodNav from "./FoodNav";
 import { BrowserRouter, Route } from "react-router-dom";
+import Contact from "./contact";
 import './App.css';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/food/pasta">
           <Food name="pasta" />
         </Route> */}
+        <Contact />
       </BrowserRouter>
     </div>
   );
