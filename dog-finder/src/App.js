@@ -14,10 +14,10 @@ function App({dogs}) {
   return (
     <div className="App">
       <BrowserRouter>
-      <NavBar dogs={dogs}/>
-      <div className='container'>
-        <Routes dogs={dogs}/>
-      </div>
+        <NavBar dogs={dogs}/>
+        <div className='container'>
+          <Routes dogs={dogs}/>
+        </div>
       </BrowserRouter>
     </div>
   );
