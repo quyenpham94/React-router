@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory  } from 'react-router-dom';
 
+import "./NewColorForm.css";
 
 const NewColorForm = ({addColor}) => {
 
