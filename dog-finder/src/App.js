@@ -15,7 +15,9 @@ function App({dogs}) {
     <div className="App">
       <BrowserRouter>
       <NavBar dogs={dogs}/>
+      <div className='container'>
         <Routes dogs={dogs}/>
+      </div>
       </BrowserRouter>
     </div>
   );
