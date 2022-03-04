@@ -61,6 +61,77 @@ class JokeList extends Component {
         }
     }
 
+    /** empty joke list, set to loading state, and then call getJokes */
+
+    generateNewJokes() {
+        this.setState(st => ({ jokes: st.jokes.filter(j => j.locked)}));
+    }
+
+    resetVotes() {
+        window.localStorage.setItem("jokeVotes", "{}");
+        this.setState(st => ({
+            jokes: st.jokes.map(joke => ({ ...joke, votes: 0 }))
+        }));
+    }
+
+    /** change vote for this id by delta (+1 or -1) */
+
+    vote(id, delta) {
+        let jokeVotes = JSON.parse(window.localStorage.getItem("jokeVotes"));
+        jokeVotes[id] = (jokeVotes[id] || 0) + delta;
+        window.localStorage.setItem("jokeVotes", JSON.stringify(jokeVotes));
+        this.setState(st => ({
+            jokes: st.jokes.map(j => 
+                j.id === id ? { ...j, votes: j.votes + delta } : j
+                )
+        }));
+    }
+
+    toggleLock(id) {
+        this.setState(st => ({
+            jokes:  st.jokes.map(j => (j.id === id ? { ...j, locked: !j.locked } : j))
+        }));
+    }
+
+    /** render: either loading spinner or list of sorted jokes. */
+    render() {
+        let sortedJokes = [...this.state.jokes].sort((a,b) => b.votes - a.votes);
+        let allLocked = 
+            sortedJokes.filter(j => j.locked).length === this.props.numJokesToGet;
+
+        return (
+            <div className='JokeList'>
+                <button
+                    className='JokeList-getmore'
+                    onClick={this.generateNewJokes}
+                    disable={allLocked}
+                >
+                    GET NEW JOKES
+                </button>
+                <button className='JokeList-getmore' onClick={this.resetVotes}>
+                    Reset Vote Counts
+                </button>
+                {sortedJokes.map(j => (
+                    <Joke   
+                        text={j.joke}
+                        key={j.id}
+                        id={j.id}
+                        votes={j.votes}
+                        vote={this.vote}
+                        locked={j.locked}
+                        toggleLock={this.toggleLock}
+                    />
+
+                ))}
+                
+                {sortedJokes.length < this.props.numJokesToGet ? (
+                    <div className='loading'>
+                    <i className='fas fa-4x fa-spinner fa-spin' />
+                    </div>
+                ) : null}
+            </div>
+        )
+    }
 }
 
 export default JokeList;
