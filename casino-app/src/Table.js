@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import "./Table.css";
+
 const Table = (props) => {
     const [gameStates, setGameStates] = useState([]);
 

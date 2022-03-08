@@ -1,6 +1,9 @@
 import React from "react";
 import Die from './Die';
 
+import './DiceSet.css';
+
+
 const DiceSet = ({ vals }) => {
     return (
         <section className="DiceSet">
