@@ -3,6 +3,11 @@ import Die from './Die';
 
 import './DiceSet.css';
 
+/** Dice Set: shows set of dice with values 
+ * 
+ * Props:
+ * - vals: array if values for dice: [2, 3, 4] shows three dice with those nums
+*/
 
 const DiceSet = ({ vals }) => {
     return (

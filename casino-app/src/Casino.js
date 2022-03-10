@@ -3,6 +3,18 @@ import Tables from './Tables';
 
 import DiceColorContext from './DieColorContext';
 
+/** Rithm Casino!
+ * 
+ * This lets players choose a lucky color, and shows the game tables.
+ * 
+ * Props:
+ * - list of [[color-val, color-name, ...], ...] for drop-down menu of colors
+ * 
+ * State:
+ * - diceColor: current color to use for dice (this becomes a "context")
+ * 
+ */
+
 const Casino = ({
     colors = [
         ["darkgreen", "Dark Green"],
@@ -33,6 +45,7 @@ const Casino = ({
                 </select>
             </p>
 
+            {/* /* wrap in "context provider", so descendants can access color */ }
             <DiceColorContext.Provider value={diceColor}>
                 <Tables />
             </DiceColorContext.Provider>

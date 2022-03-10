@@ -2,6 +2,20 @@ import React, { useState } from 'react';
 import DiceSet from './DiceSet';
 import { rollDice } from './utils';
 
+/** Psychic Dice: a simple dice-rolling "game".
+ * 
+ * Dice are rolled; you indicate whether you psychically "knew" them or not
+ * 
+ * Props:
+ * - numDice: number of dice to roll
+ * - numSides: number of sides on dice
+ * - gameState: "won", "lost", or undefined (still being played)
+ * 
+ * State:
+ * - vals: values of dice
+ * 
+ */
+
 const PsychicDice = ({ numDice = 3, numSides = 6, addWin, addLoss, gameState }) => {
     const [vals, setVals] = useState(Array(numDice).fill());
     const [unrolled, setUnrolled] = useState(true);
