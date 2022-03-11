@@ -4,7 +4,16 @@ import { rollDice } from './utils';
 
 /** Roll: a simple dice-rolling game.
  * 
- * Keep rolling dice -- there's no real win/loss
+ * Keep rolling dice -- there's no real win/loss.
+ * 
+ * Props:
+ * - numDice: number of dice to roll
+ * - numSides: number of sides on dice
+ * - gameState: "won", "lost", or undefined [if still playing] in this game, every roll "wins"
+ * 
+ * State:
+ * - vals: values of dice
+ * 
  */
 
 const RollEm = ({ numDice = 3, numSides = 6, gameState, addWin }) => {
@@ -12,6 +21,8 @@ const RollEm = ({ numDice = 3, numSides = 6, gameState, addWin }) => {
 
     const roll = e => {
         setVals(rollDice(numDice, numSides));
+
+        // "hey, kids --- every game's a winner! isn't gambling *fun*?"
         addWin();
     }
     return (
